@@ -100,7 +100,7 @@ class LyricScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'song.name ${PinyinHelper.getShortPinyin(song.name)}',
+            song.name,
           ),
       ),
       body: Padding(
