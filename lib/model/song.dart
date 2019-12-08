@@ -7,10 +7,16 @@ class Song extends ISuspensionBean {
   String namePinyin;
   String shortPinyin;
 
-  Song({this.name, this.lyric});
+  Song({this.name, this.lyric, this.tagIndex, this.namePinyin, this.shortPinyin});
 
   factory Song.fromJson(Map<String, dynamic> json) {
-    return Song(name: json['name'], lyric: json['lyric']);
+    return Song(
+      name: json['name'],
+      lyric: json['lyric'],
+      tagIndex: json['tagIndex'],
+      namePinyin: json['namePinyin'],
+      shortPinyin: json['shortPinyin'],
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -27,4 +33,3 @@ class Song extends ISuspensionBean {
   @override
   String toString() => 'SongBean { "name":"$name" }';
 }
-

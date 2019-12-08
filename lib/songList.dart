@@ -1,35 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:lpinyin/lpinyin.dart';
 import 'package:azlistview/azlistview.dart';
 import 'model/song.dart';
 import 'lyric.dart';
 
 Future<List<Song>> loadSongs() async {
-  String jsonString = await rootBundle.loadString('assets/song.json');
+  String jsonString = await rootBundle.loadString('assets/song-sorted.json');
   final jsonResponse = json.decode(jsonString) as List;
-  List<Song> songs = jsonResponse.map<Song>((s) {
-    Song song = Song.fromJson(s);
-    String pinyin = PinyinHelper.getPinyinE(song.name);
-    String tag = pinyin.substring(0, 1).toUpperCase();
-    song.namePinyin = pinyin;
-    String shortPinyin = '';
-    try {
-      shortPinyin = PinyinHelper.getShortPinyin(
-          song.name.replaceAll(',', '').replaceAll('-', ''));
-    } catch (e) {
-      print(song.name);
-      print(e);
-    }
-    song.shortPinyin = shortPinyin;
-
-    song.tagIndex = RegExp("[A-Z]").hasMatch(tag) ? tag : '#';
-    return song;
-  }).toList();
-  songs.sort((s1, s2) => s1.shortPinyin.compareTo(s2.shortPinyin));
-
-  return songs;
+  return jsonResponse.map<Song>((s) => Song.fromJson(s)).toList();
 }
 
 class SongList extends StatefulWidget {
@@ -117,14 +96,6 @@ class _SongListState extends State<SongList> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        /**
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.only(left: 15.0),
-          height: 50.0,
-          child: Text("当前城市: 成都市"),
-        ),
-        **/
         Expanded(
             flex: 1,
             child: AzListView(
