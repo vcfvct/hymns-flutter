@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'songList.dart';
+import 'songList.screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SongList() 
+      body: SongList()
     );
   }
 }

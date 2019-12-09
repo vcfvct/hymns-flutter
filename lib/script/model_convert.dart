@@ -1,7 +1,5 @@
-
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:lpinyin/lpinyin.dart';
 
 void main() {
@@ -28,5 +26,5 @@ void main() {
   jsonResponse.sort((s1, s2) => s1['shortPinyin'].compareTo(s2['shortPinyin']));
 
   new File('./assets/song-sorted.json').writeAsString(json.encode(jsonResponse));
-  
+
 }

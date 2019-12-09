@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:azlistview/azlistview.dart';
 import 'model/song.dart';
-import 'lyric.dart';
+import 'lyric.screen.dart';
 
 Future<List<Song>> loadSongs() async {
   String jsonString = await rootBundle.loadString('assets/song-sorted.json');

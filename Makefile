@@ -1,6 +1,6 @@
 # generate pinyin sorted song list
 sort:
-	dart lib/model_convert.dart
+	dart lib/script/model_convert.dart
 run:
 	flutter run
 pixel:
