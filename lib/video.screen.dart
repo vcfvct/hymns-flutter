@@ -9,7 +9,6 @@ class VideoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: Text('$keyword - 视频'),
@@ -26,13 +25,14 @@ class VideoScreen extends StatelessWidget {
   }
 
   String buildSearchUrl() {
+    String encodedKeyword = Uri.encodeComponent(keyword);
     switch (site) {
       case 'qq':
-        return 'https://v.qq.com/x/search/?q=$keyword';
+        return 'https://v.qq.com/x/search/?q=$encodedKeyword';
       case 'youtube':
-        return 'https://www.youtube.com/results?q=$keyword';
+        return 'https://www.youtube.com/results?q=$encodedKeyword';
       case 'iqiyi':
-        return 'https://so.iqiyi.com/so/q_$keyword';
+        return 'https://so.iqiyi.com/so/q_$encodedKeyword';
       default:
         throw new Exception('Unknown site $site');
     }
